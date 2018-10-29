@@ -4,7 +4,7 @@ import update from './update';
 //state
 const initialState = {
     score: 0,
-    snake: [{ x: 25, y: 3, }, { x: 25, y: 2, }, { x: 25, y: 1, }],
+    snake: [{ x: 3, y: 25, }, { x: 2, y: 25, }, { x: 1, y: 25, }],
     apple: { x: 25, y: 25 },
     tickSpeed: 1,
     level: 1,

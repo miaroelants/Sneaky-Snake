@@ -1,7 +1,26 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-const Snake = () => {
-    return <div></div>
+// component
+const Snake = ({ snake }) => {
+    const snakeParts = snake.map(
+        part => <div className="snake" style={{ left: part.x * 10 + 'px', top: part.y * 10 + 'px' }}></div>
+    )
+    return (
+        <div >
+            {snakeParts}
+        </div>
+    )
 }
 
-export default Snake
+// StateToProps
+const mapStateToProps = (state) => {
+    return {
+        snake: state.snake
+    }
+}
+
+// connect
+export default connect(mapStateToProps)(Snake)
+
+
