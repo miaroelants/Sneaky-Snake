@@ -1,11 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
+import Snake from './Snake'
+import Apple from './Apple'
+import Level from './Level'
+import Score from './Score'
 
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
       <div className="App">
-        test
+        <div id="meta"></div>
+        <Score />
+        <Level />
+        <div id="field">
+          <Apple />
+          <Snake />
+        </div>
       </div>
     );
   }
