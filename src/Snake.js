@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 // component
 const Snake = ({ snake }) => {
     const snakeParts = snake.map(
-        part => <div className="snake" style={{ left: part.x * 10 + 'px', top: part.y * 10 + 'px' }}></div>
+        part => <div key={part.x + "_" + part.y} className="snake" style={{ left: part.x * 10 + 'px', top: part.y * 10 + 'px' }}></div>
     )
     return (
         <div >

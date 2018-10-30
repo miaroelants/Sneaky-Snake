@@ -8,5 +8,5 @@ import Store, { changeDirection, tickTick } from './store'
 
 ReactDOM.render(<Provider store={Store}><App /></Provider>, document.getElementById('root'));
 
-Store.dispatch(changeDirection('up'))
-Store.dispatch(tickTick())
+
+window.tick = () => Store.dispatch(tickTick())

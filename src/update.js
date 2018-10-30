@@ -23,14 +23,45 @@ function nextPosition(position, direction) {
             y: position.y + 1,
         }
     }
+}
 
+function isEqualPosition(position1, position2) {
+    if ((position1.x === position2.x) && (position1.y === position2.y)) {
+        return true
+    }
+    else { return false }
 }
 
 function update(state) {
     console.log("state:", state)
-    return {
+    // eats apple
+    const nextPos = nextPosition(state.snake[state.snake.length - 1], state.direction)
+    if (isEqualPosition(nextPos, state.apple)) {
+        return {
+            ...state,
+            score: state.score + 1,
+            apple: { x: Math.floor(Math.random() * 50), y: Math.floor(Math.random() * 50) },
+            snake: state.snake.concat(nextPos)
+        }
+    }
+    // suicidal snake
+    else if (state.snake.includes(nextPos)) {
+        return {
+            ...state,
+            gameOver: true,
+        }
+    }
+    // snake hugs wall
+    else if (nextPos.x >= 50 || nextPos.y >= 50 || nextPos.x <= 0 || nextPos.y <= 0) {
+        return {
+            ...state,
+            gameOver: true,
+        }
+    }
+    // snake moves
+    else return {
         ...state,
-        snake: [nextPosition, state.snake[0], state.snake[1]]
+        snake: (state.snake.concat(nextPos)).slice(1)
     }
 }
 
