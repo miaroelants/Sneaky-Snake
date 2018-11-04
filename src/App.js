@@ -8,7 +8,7 @@ import Score from './Score'
 class App extends React.Component {
   render() {
     return (
-      <div className="App">
+      <div id="App">
         <div id="meta"></div>
         <Score />
         <Level />

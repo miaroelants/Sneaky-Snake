@@ -1,10 +1,5 @@
-.App {
-  position: relative;
-  text-align: center;
-  background-color: black;
-  height: 500px;
-  width: 500px;
-
+#App {
+  margin: 0 auto;
 }
 
 .snake {
@@ -14,9 +9,29 @@
 #apple { background-color: red }
 
 
-#field { position: relative; }
+#field { 
+  position: relative;
+  text-align: center;
+  background-color: black;
+  height: 500px;
+  width: 500px; }
 
 #field * { 
   position: absolute; 
   width: 10px; 
   height: 10px; }
+  
+
+#score {
+    display: inline-block;
+    color: white;
+    background-color: black;
+    width: 500px;
+    height: 30px;
+    border-bottom: 4px dashed white;
+    font-family: 'Press Start 2P', cursive;
+    text-align: left;
+    font-size: 20px;
+    vertical-align: middle;
+    padding-top: 10px;
+  }

@@ -52,7 +52,7 @@ function update(state) {
         }
     }
     // snake hugs wall
-    else if (nextPos.x >= 50 || nextPos.y >= 50 || nextPos.x <= 0 || nextPos.y <= 0) {
+    else if (nextPos.x >= 50 || nextPos.y >= 50 || nextPos.x < 0 || nextPos.y < 0) {
         return {
             ...state,
             gameOver: true,

@@ -1,7 +1,21 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-const Score = () => {
-    return <div></div>
+// component
+const Score = ({score}) => {
+    return (
+        <div id="score" >
+            SCORE : {score}
+        </div>
+    )
 }
 
-export default Score
+// StateToProps
+const mapStateToProps = (state) => {
+    return {
+        score: state.score
+    }
+}
+
+// connect
+export default connect(mapStateToProps)(Score)
