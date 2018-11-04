@@ -1,24 +1,32 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import GameOverText from './GameOverText'
+import {newGame} from './store'
+
+
 
 // component
-const GameOver = ({score}) => {
+const GameOver = () => {
+    function checkKey(e) {
+    e = e || window.event;
+    if (e.keyCode === 32) {
+        // space button
+        Store.dispatch(newGame())
+        }
     return (
         <div id="gameover" >
-            <div>GAME OVER</div>
-            <br />
-            <div>YOUR SCORE WAS {score}</div>            
+            <GameOverText />           
         </div>
     )
 }
 
 // StateToProps
-const mapStateToProps = (state) => {
+const mapDispatchToProps = (dispatch) => {
     return {
-        score: state.score
+        newGame: () => dispatch(newGame()),
     }
 }
 
 // connect
-export default connect(mapStateToProps)(GameOver)
+export default connect(null, mapDispatchToProps)(GameOver)
 

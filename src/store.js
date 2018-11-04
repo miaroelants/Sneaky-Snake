@@ -12,13 +12,6 @@ const initialState = {
     gameOver: false,
 }
 
-/* setInterval
-const tickTick = window.setInterval(myCallback, 500);
-function myCallback() {
-    tickTick()
-}
-*/
-
 //actions
 export function changeDirection(direction) {
     return { type: 'CHANGE_DIRECTION', payload: direction }
@@ -26,6 +19,10 @@ export function changeDirection(direction) {
 
 export function tickTick() {
     return { type: 'TICK_TICK', }
+}
+
+export function newGame() {
+    return { type: 'NEW_GAME',}
 }
 
 
@@ -37,9 +34,18 @@ function reducer(state, action) {
             direction: action.payload
         }
     }
-    if (action.type === 'TICK_TICK') {
+
+    else if (action.type === 'NEW_GAME') {
+        return {
+            ...state,
+            gameOver: false
+        }
+    }
+
+    else if (action.type === 'TICK_TICK') {
         return update(state)
     }
+
 
     else { return state }
 }
