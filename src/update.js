@@ -41,7 +41,7 @@ function update(state) {
         return {
             ...state,
             score: state.score + 1,
-            apple: { x: Math.floor(Math.random() * 50), y: Math.floor(Math.random() * 50) },
+            apple: { x: Math.floor(Math.random() * 40), y: Math.floor(Math.random() * 40) },
             snake: state.snake.concat(nextPos)
         }
     }
@@ -55,7 +55,7 @@ function update(state) {
     }
 
     // snake hugs wall
-    else if (nextPos.x >= 50 || nextPos.y >= 50 || nextPos.x < 0 || nextPos.y < 0) {
+    else if (nextPos.x >= 40 || nextPos.y >= 40 || nextPos.x < 0 || nextPos.y < 0) {
         return {
             ...state,
             gameOver: true,
