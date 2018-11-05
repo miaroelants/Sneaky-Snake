@@ -36,6 +36,7 @@ function update(state) {
     console.log("state:", state)
     // eats apple
     const nextPos = nextPosition(state.snake[state.snake.length - 1], state.direction)
+
     if (isEqualPosition(nextPos, state.apple)) {
         return {
             ...state,
@@ -44,13 +45,15 @@ function update(state) {
             snake: state.snake.concat(nextPos)
         }
     }
+
     // suicidal snake
-    else if (state.snake.includes(nextPos)) {
+    else if (state.snake.some(part => isEqualPosition(part, nextPos))) {
         return {
             ...state,
             gameOver: true,
         }
     }
+
     // snake hugs wall
     else if (nextPos.x >= 50 || nextPos.y >= 50 || nextPos.x < 0 || nextPos.y < 0) {
         return {
@@ -58,6 +61,7 @@ function update(state) {
             gameOver: true,
         }
     }
+
     // snake moves
     else return {
         ...state,

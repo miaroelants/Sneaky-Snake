@@ -22,7 +22,7 @@ export function tickTick() {
 }
 
 export function newGame() {
-    return { type: 'NEW_GAME',}
+    return { type: 'NEW_GAME', }
 }
 
 
@@ -36,16 +36,12 @@ function reducer(state, action) {
     }
 
     else if (action.type === 'NEW_GAME') {
-        return {
-            ...state,
-            gameOver: false
-        }
+        return initialState
     }
 
     else if (action.type === 'TICK_TICK') {
         return update(state)
     }
-
 
     else { return state }
 }
