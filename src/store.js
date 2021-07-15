@@ -32,9 +32,14 @@ export function tickTick() {
 //reducer
 function reducer(state, action) {
     if (action.type === 'CHANGE_DIRECTION') {
+        const didInvertDirection = (state.direction === 'left' && action.payload === 'right')
+            || (state.direction === 'right' && action.payload === 'left')
+            || (state.direction === 'down' && action.payload === 'up')
+            || (state.direction === 'up' && action.payload === 'down')
+
         return {
             ...state,
-            direction: state.gameState === 'playing' ? action.payload : state.direction
+            direction: state.gameState === 'playing' && !didInvertDirection ? action.payload : state.direction
         }
     }
 
