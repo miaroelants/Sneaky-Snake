@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "815f25093f53503e3723",
+    "revision": "a298d23e09822f45e6e6",
     "url": "/Sneaky-Snake/static/css/main.3bf158d9.chunk.css"
   },
   {
-    "revision": "815f25093f53503e3723",
-    "url": "/Sneaky-Snake/static/js/main.815f2509.chunk.js"
+    "revision": "a298d23e09822f45e6e6",
+    "url": "/Sneaky-Snake/static/js/main.a298d23e.chunk.js"
   },
   {
     "revision": "31dc5be629a5ebb2f56a",
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/Sneaky-Snake/static/js/runtime~main.c7f69636.js"
   },
   {
-    "revision": "b48e0638cdb04221c48a3bd8721fd4ca",
+    "revision": "555d3f2d9fc7ae5192b875d1d6e4df16",
     "url": "/Sneaky-Snake/index.html"
   }
 ];
