@@ -1,0 +1,22 @@
+name: actions/build
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout codebase
+      uses: actions/checkout@v2
+    - name: Install Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: 13.x
+    - name: Build and push the project
+      run: |
+        chmod +x ./bin/build_for_pages.sh
+        ./bin/build_for_pages.sh
