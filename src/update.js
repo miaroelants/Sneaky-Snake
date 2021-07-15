@@ -1,3 +1,10 @@
+function randomPosition() {
+    return {
+        x: Math.floor(Math.random() * 40),
+        y: Math.floor(Math.random() * 40),
+    }
+}
+
 function nextPosition(position, direction) {
     if (direction === 'right') {
         return {
@@ -35,15 +42,14 @@ function update(state) {
 
     // eats apple
     if (isEqualPosition(nextPos, state.apple)) {
-        let randomPosition
-
-        while (!randomPosition || isEqualPosition(state.apple, randomPosition) || state.snake.includes(randomPosition))
-            randomPosition = { x: Math.floor(Math.random() * 40), y: Math.floor(Math.random() * 40) }
+        let nextApple = randomPosition()
+        while (state.snake.includes(nextApple) || isEqualPosition(nextApple, state.apple))
+            nextApple = randomPosition()
 
         return {
             ...state,
             score: state.score + 1,
-            apple: randomPosition,
+            apple: nextApple,
             snake: state.snake.concat(nextPos)
         }
     }
