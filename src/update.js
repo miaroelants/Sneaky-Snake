@@ -49,23 +49,23 @@ function update(state) {
     }
 
     // suicidal snake
-    else if (state.snake.some(part => isEqualPosition(part, nextPos))) {
+    if (state.snake.some(part => isEqualPosition(part, nextPos))) {
         return {
             ...state,
-            gameOver: true,
+            gameState: 'over',
         }
     }
 
     // snake hugs wall
-    else if (nextPos.x >= 40 || nextPos.y >= 40 || nextPos.x < 0 || nextPos.y < 0) {
+    if (nextPos.x >= 40 || nextPos.y >= 40 || nextPos.x < 0 || nextPos.y < 0) {
         return {
             ...state,
-            gameOver: true,
+            gameState: 'over',
         }
     }
 
     // snake moves
-    else return {
+    return {
         ...state,
         snake: (state.snake.concat(nextPos)).slice(1)
     }
