@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { Provider } from 'react-redux'
-import Store, { changeDirection, toggleGameState, tickTick } from './store'
+import Store, { changeDirection, forcePause, toggleGameState, tickTick } from './store'
 
 ReactDOM.render(<Provider store={Store}><App /></Provider>, document.getElementById('root'));
 
@@ -27,13 +27,20 @@ const checkKey = (e) => {
     }
 }
 
-const init = () => {
+const pause = () => {
+    const state = Store.getState()
+    if (state.gameState === 'playing')
+        Store.dispatch(forcePause())
+}
+
+const play = () => {
     const state = Store.getState()
     const delay = 200 - Math.floor(state.score / 10) * 10
-    setTimeout(init, delay)
+    setTimeout(play, delay)
     if (state.gameState === 'playing')
         Store.dispatch(tickTick())
 }
 
-document.onkeydown = checkKey;
-init()
+document.onkeydown = checkKey
+window.onblur = pause
+play()

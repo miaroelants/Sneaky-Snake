@@ -23,6 +23,10 @@ export function gameOver() {
     return { type: 'GAME_OVER', }
 }
 
+export function forcePause() {
+    return { type: 'FORCE_PAUSE', }
+}
+
 export function tickTick() {
     return { type: 'TICK_TICK', }
 }
@@ -65,6 +69,13 @@ function reducer(state, action) {
         return {
             ...state,
             gameState: 'over',
+        }
+    }
+
+    if (action.type === 'FORCE_PAUSE') {
+        return {
+            ...state,
+            gameState: 'paused',
         }
     }
 
