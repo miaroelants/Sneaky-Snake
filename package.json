@@ -2,7 +2,7 @@
   "name": "sneaky-snake",
   "version": "0.2.0",
   "private": true,
-  "homepage" : "https://qrivi.github.io/Sneaky-Snake/",
+  "homepage": "https://qrivi.github.io/Sneaky-Snake/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
