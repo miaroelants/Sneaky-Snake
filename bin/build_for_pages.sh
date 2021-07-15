@@ -1,9 +1,11 @@
 
 #!/bin/bash
 set -e
-GITHUB_USER="$(echo ${GITHUB_REPOSITORY} | cut -d / -f 1)"
+REPO_OWNER="Qrivi"
+BOT_USER="Qrivi's Build Bot"
+BOT_EMAIL="buildbot@qrivi.dev"
 
-push_build() {
+build_for_pages() {
   # Install dependencies and build the project
   npm install
   npm run build
@@ -13,8 +15,8 @@ push_build() {
   mv ./build ./docs
 
   # Set git user credentials
-  git config --global user.name "${GITHUB_USER}'s Build Bot"
-  git config --global user.email "buildbot@qrivi.dev"
+  git config --global user.name "$BOT_USER"
+  git config --global user.email "$BOT_EMAIL"
 
   # Push the production build
   git add .
@@ -22,10 +24,16 @@ push_build() {
   git push
 }
 
-## Don't push commits from the build bot, since those are already production builds
-if [[ $(git log -1 --pretty=format:'%an') == *${GITHUB_USER}* ]]
-  then
-    echo "Last commit is already from the bot: no further action required."
-  else
-    push_build
+# Don't do anything if the remote is not the one we expect (eg. when repo was forked)
+if [[ $(echo $GITHUB_REPOSITORY | cut -d / -f 1) == *$REPO_OWNER* ]]; then
+    echo "The remote repository is not the repository I am supposed to push to. Aborting..."
+    exit 0
 fi
+
+## Don't do anything if the last commit is from this bot (eg. it got triggered twice for some reason)
+if [[ $(git log -1 --pretty=format:'%an') == *$BOT_USER* ]]; then
+    echo "Last commit is one by me so no need to build and push this thing twice. Aborting..."
+    exit 0
+fi
+
+build_for_pages
