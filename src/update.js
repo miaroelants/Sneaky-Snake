@@ -43,7 +43,8 @@ function update(state) {
     // eats apple
     if (isEqualPosition(nextPos, state.apple)) {
         let nextApple = randomPosition()
-        while (state.snake.includes(nextApple) || isEqualPosition(nextApple, state.apple))
+        // eslint-disable-next-line no-loop-func
+        while (state.snake.some(part => isEqualPosition(nextApple, part)) || isEqualPosition(nextApple, state.apple))
             nextApple = randomPosition()
 
         return {
