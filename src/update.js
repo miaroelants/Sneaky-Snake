@@ -26,22 +26,24 @@ function nextPosition(position, direction) {
 }
 
 function isEqualPosition(position1, position2) {
-    if ((position1.x === position2.x) && (position1.y === position2.y)) {
-        return true
-    }
-    else { return false }
+    return position1.x === position2.x && position1.y === position2.y
 }
 
 function update(state) {
-    console.log("state:", state)
-    // eats apple
+    // console.log("state:", state)
     const nextPos = nextPosition(state.snake[state.snake.length - 1], state.direction)
 
+    // eats apple
     if (isEqualPosition(nextPos, state.apple)) {
+        let randomPosition
+
+        while (!randomPosition || isEqualPosition(state.apple, randomPosition) || state.snake.includes(randomPosition))
+            randomPosition = { x: Math.floor(Math.random() * 40), y: Math.floor(Math.random() * 40) }
+
         return {
             ...state,
             score: state.score + 1,
-            apple: { x: Math.floor(Math.random() * 40), y: Math.floor(Math.random() * 40) },
+            apple: randomPosition,
             snake: state.snake.concat(nextPos)
         }
     }
