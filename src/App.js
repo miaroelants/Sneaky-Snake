@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 
 const App = () => (
   <div id="App">
-    <h1>Snaek</h1>
+    <h1>Snake</h1>
     <div id="field">
       <Apple />
       <Snake />
