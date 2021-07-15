@@ -6,8 +6,6 @@ const initialState = {
     score: 0,
     snake: [{ x: 1, y: 25, }, { x: 2, y: 25, }, { x: 3, y: 25, }],
     apple: { x: 10, y: 25 },
-    tickSpeed: 1,
-    level: 1,
     direction: 'right',
     gameState: 'paused',
 }

@@ -7,7 +7,6 @@ import Store, { changeDirection, toggleGameState, tickTick } from './store'
 
 ReactDOM.render(<Provider store={Store}><App /></Provider>, document.getElementById('root'));
 
-document.onkeydown = checkKey;
 const checkKey = (e) => {
     e = e || window.event;
 
@@ -28,9 +27,13 @@ const checkKey = (e) => {
     }
 }
 
+const init = () => {
+    const state = Store.getState()
+    const delay = 200 - Math.floor(state.score / 10) * 10
+    setTimeout(init, delay)
+    if (state.gameState === 'playing')
+        Store.dispatch(tickTick())
 }
 
-setInterval(
-    () => Store.dispatch(tickTick()),
-    200
-);
+document.onkeydown = checkKey;
+init()
