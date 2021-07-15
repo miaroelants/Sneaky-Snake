@@ -25,7 +25,7 @@ build_for_pages() {
 }
 
 # Don't do anything if the remote is not the one we expect (eg. when repo was forked)
-if [[ $(echo $GITHUB_REPOSITORY | cut -d / -f 1) == *$REPO_OWNER* ]]; then
+if [[ $(echo $GITHUB_REPOSITORY | cut -d / -f 1) != *$REPO_OWNER* ]]; then
     echo "The remote repository is not the repository I am supposed to push to. Aborting..."
     exit 0
 fi
