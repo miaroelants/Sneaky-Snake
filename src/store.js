@@ -44,20 +44,20 @@ function reducer(state, action) {
     if (action.type === 'TOGGLE_GAMESTATE') {
         switch (state.gameState) {
             case 'over':
-                return update({
+                return {
                     ...initialState,
                     gameState: 'playing',
-                })
+                }
             case 'playing':
                 return {
                     ...state,
                     gameState: 'paused',
                 }
             default:
-                return update({
+                return {
                     ...state,
                     gameState: 'playing',
-                })
+                }
         }
     }
 
