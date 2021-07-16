@@ -1,19 +1,20 @@
 {
   "name": "sneaky-snake",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
-  "dependencies": {
-    "react": "^16.6.0",
-    "react-dom": "^16.6.0",
-    "react-redux": "^5.1.0",
-    "react-scripts": "2.0.5",
-    "redux": "^4.0.1"
-  },
+  "homepage": "https://qrivi.github.io/Sneaky-Snake/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.4",
+    "react-scripts": "^4.0.3",
+    "redux": "^4.1.0"
   },
   "eslintConfig": {
     "extends": "react-app"
