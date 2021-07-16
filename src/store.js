@@ -7,6 +7,7 @@ const initialState = {
     snake: [{ x: 1, y: 25, }, { x: 2, y: 25, }, { x: 3, y: 25, }],
     apple: { x: 10, y: 25 },
     direction: 'right',
+    nextDirection: 'right',
     gameState: 'paused',
 }
 
@@ -34,14 +35,9 @@ export function tickTick() {
 //reducer
 function reducer(state, action) {
     if (action.type === 'CHANGE_DIRECTION') {
-        const didInvertDirection = (state.direction === 'left' && action.payload === 'right')
-            || (state.direction === 'right' && action.payload === 'left')
-            || (state.direction === 'down' && action.payload === 'up')
-            || (state.direction === 'up' && action.payload === 'down')
-
         return {
             ...state,
-            direction: state.gameState === 'playing' && !didInvertDirection ? action.payload : state.direction
+            nextDirection: state.gameState === 'playing' ? action.payload : state.direction
         }
     }
 

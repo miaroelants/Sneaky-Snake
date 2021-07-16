@@ -38,7 +38,19 @@ function isEqualPosition(position1, position2) {
 
 function update(state) {
     // console.log("state:", state)
-    const nextPos = nextPosition(state.snake[state.snake.length - 1], state.direction)
+
+    // calculate next position
+    let nextPart = state.direction
+    if (state.direction !== state.nextDirection) {
+        const didReverse = (state.direction === 'left' && state.nextDirection === 'right')
+            || (state.direction === 'right' && state.nextDirection === 'left')
+            || (state.direction === 'down' && state.nextDirection === 'up')
+            || (state.direction === 'up' && state.nextDirection === 'down')
+
+        if (!didReverse)
+            nextPart = state.nextDirection
+    }
+    const nextPos = nextPosition(state.snake[state.snake.length - 1], nextPart)
 
     // eats apple
     if (isEqualPosition(nextPos, state.apple)) {
@@ -51,7 +63,9 @@ function update(state) {
             ...state,
             score: state.score + 1,
             apple: nextApple,
-            snake: state.snake.concat(nextPos)
+            snake: state.snake.concat(nextPos),
+            direction: nextPart,
+            nextDirection: nextPart,
         }
     }
 
@@ -74,7 +88,9 @@ function update(state) {
     // snake moves
     return {
         ...state,
-        snake: (state.snake.concat(nextPos)).slice(1)
+        snake: (state.snake.concat(nextPos)).slice(1),
+        direction: nextPart,
+        nextDirection: nextPart,
     }
 }
 
